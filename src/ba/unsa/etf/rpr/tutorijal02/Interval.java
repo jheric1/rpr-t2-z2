@@ -25,14 +25,12 @@ public class Interval {
     }
 
     public boolean isNull(){
-        if(pocetak==0 && kraj==0 && log1==false && log2==false) return true;
-        return false;
+        return pocetak == 0 && kraj == 0 && !log1 && !log2;
     }
     public boolean isIn(double tacka){
         if(tacka>pocetak && tacka<kraj) return true;
-        if(tacka==pocetak && log1==true) return true;
-        if(tacka==kraj && log2==true) return true;
-        else return false;
+        if(tacka==pocetak && log1) return true;
+        return tacka == kraj && log2;
     }
     /*public Interval intersect(Interval i){
     }
@@ -50,8 +48,7 @@ public class Interval {
 
     public boolean equals(Interval obj) {
 
-        if (this.pocetak == pocetak && this.kraj == obj.kraj && this.log1 == obj.log1 && this.log2 == obj.log2) return true;
-        return false;
+        return this.pocetak == pocetak && this.kraj == obj.kraj && this.log1 == obj.log1 && this.log2 == obj.log2;
     }
 
     public Interval intersect(Interval interval) {
