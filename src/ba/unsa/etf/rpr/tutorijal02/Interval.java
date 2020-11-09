@@ -20,10 +20,6 @@ public class Interval {
 
     }
 
-    public static Interval intersect(Interval i, Interval i2) {
-        return i;
-    }
-
     public boolean isNull(){
         return pocetak == 0 && kraj == 0 && !log1 && !log2;
     }
@@ -32,12 +28,25 @@ public class Interval {
         if(tacka==pocetak && log1) return true;
         return tacka == kraj && log2;
     }
-    /*public Interval intersect(Interval i){
+    public Interval intersect(Interval i){
+    Interval rez= new Interval();
+        if(this.pocetak>=i.pocetak){ rez.pocetak=this.pocetak;
+        if (isIn(this.pocetak)) rez.log1=true;}
+        if(this.kraj>=i.kraj){ rez.pocetak=i.kraj;
+            if (isIn(i.kraj)) rez.log2=true;}
+        else {
+            rez.pocetak=i.pocetak;
+            if (isIn(i.pocetak)) rez.log1=true;
+            rez.kraj=this.kraj;
+            if (isIn(this.kraj)) rez.log1=true;
+        }
+     return rez;
     }
     public static Interval intersect(Interval i1, Interval i2){
-
+        Interval rez= new Interval();
+        rez=i1.intersect(i2);
+        return rez;
     }
-*/
     @Override
     public String toString() {
         if(isNull()) return "()";
@@ -51,8 +60,6 @@ public class Interval {
         return this.pocetak == pocetak && this.kraj == obj.kraj && this.log1 == obj.log1 && this.log2 == obj.log2;
     }
 
-    public Interval intersect(Interval interval) {
-        return interval;
-    }
+
 
 }
